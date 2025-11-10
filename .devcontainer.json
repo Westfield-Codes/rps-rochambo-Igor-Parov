@@ -1,6 +1,6 @@
 {
 	"name": "Default Linux Universal",
-	"image": "mcr.microsoft.com/devcontainers/universal:2-latest",
+	"image": "mcr.microsoft.com/devcontainers/universal:latest",
 	"customizations": {
 		"vscode": {
 			"extensions": [
