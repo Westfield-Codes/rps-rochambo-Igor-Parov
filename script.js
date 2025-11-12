@@ -18,6 +18,11 @@ alert("You chose " + u + " ,and I chose " + c + " " + winner + " won!" )
 
 
 function setRounds() {
+for(let round = 0;round<4;round++){
+rpsRound();
+findWinner();
+}
+
 
 }
 
@@ -27,7 +32,7 @@ function setRounds() {
 * @return:none
 */
 function rpsRound() {
-
+main();
 }
 
 /* userturn
