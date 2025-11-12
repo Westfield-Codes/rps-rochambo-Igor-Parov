@@ -1,19 +1,19 @@
-const { use } = require("react");
 
 /* Global Variables */
 let score = [0,0];
 
 function main(){
 cpuTurn()
-let you = "";
-let computer = "";
-while(you!=computer){
-you = userTurn() 
-computer = cpuTurn()
-if (u=c) alert("We both chose " + computer)
+let u = "";
+let c = "";
+while(u==c){
+    u = userTurn() 
+    c = cpuTurn()
+    if (u==c) alert("We both chose " + c)
 }
-let winner = findWinner(you, computer)
-alert("You chose " + you + " ,and I chose " + computer + " " + winner + " won!" )
+let combo = u+c;
+let winner = findWinner(combo)
+alert("You chose " + u + " ,and I chose " + c + " " + winner + " won!" )
 }
 
 
@@ -40,10 +40,12 @@ function userTurn() {
 let choice = prompt("r, p, s?")
 let moves = ["r", "p", "s"];
 if (!moves.includes(choice)){ alert("Invalid Input!") 
-return userTurn ;}
-else{
-return choice;
+    return userTurn() ;
 }
+else{
+    return choice;
+}
+
 }
 
 /* cpuTurn
@@ -54,8 +56,8 @@ return choice;
 function cpuTurn() {
 let moves = ["r", "p", "s"];
 let turn = Math.floor(Math.random()*3);
-computer = moves[turn];
-return turn;
+c = moves[turn];
+return c;
 
 }
 
@@ -66,6 +68,18 @@ return turn;
 * @param:u,c
 * @return: winner
 */
-function findWinner(u,c) {
+function findWinner(combo) {
+let match = "";
+let winner = "";
+let winArray = [["r", "p", "I"],["r", "s", "You"],["s", "r", "I"],["s", "p", "You"],["p", "s", "I"],["p", "r", "You"]]
+for(i=0;i<winArray.length;i++){
+match = winArray[i][0] + winArray[i][1]
+if(match == combo){
+    winner = winArray[i][2]
+}
+    
+}
+
+return winner;
 
 }
