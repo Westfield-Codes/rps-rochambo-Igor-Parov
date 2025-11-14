@@ -1,16 +1,21 @@
 /* Global Variables */
 let score = [0, 0];
-let rounds = 3;
+let rounds = 5;
 
-function main() {
+function main(finalWinner) {
    rounds = setRounds();
-   for (let round = 0; round < 5; round++) {
-      rpsRound();
+   for (let round = 0; round < rounds; round++) {
+      let winner = rpsRound();
+      scoreBoard(winner);
    }
+   finalWinner = FinalWinner();
+   alert("The final score is " + score + ". \n" + finalWinner + " won!")
+
+   
 }
 
 function setRounds() {
-   return 3;
+   return 5;
 }
 
 function rpsRound() {
@@ -34,11 +39,13 @@ function rpsRound() {
 function scoreBoard(winner) {
    if (winner == "I") score[1] += 1;
    else score[0] += 1;
-   let finalWinner = ""
-   if (score[0] > score[1]) finalWinner = "I";
-   else finalWinner = "You"
-   alert("The final score is " + score + ". \n" + finalWinner + " won!")
+}
 
+function FinalWinner() {
+   let finalWinner = "";
+   if (score[0] > score[1]) finalWinner = "You";
+   else finalWinner = "I";
+   return finalWinner;
 }
 
 /* RPS Round
