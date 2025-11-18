@@ -1,34 +1,21 @@
 /* Global Variables */
-var score = [0, 0];
-var rounds = 5;
-var board = document.getElementById("gameBoard");
+let score = [0, 0];
+let rounds = 5;
 
-function main() {
+function main(finalWinner) {
+   rounds = setRounds();
+   for (let round = 0; round < rounds; round++) {
+      let winner = rpsRound();
+      scoreBoard(winner);
+   }
+   finalWinner = FinalWinner();
+   alert("The final score is " + score + ". \n" + finalWinner + " won!")
+
    
-   document.getElementById("playButton"). style.display = "none";
-   let instructions = document.createElement("p");
-   instructions.innerHTML = "How many rounds would you like to play? (1-10)";
-   board.appendChild(instructions);
-   let roundsBox = document.createElement("input");
-   roundsBox.id = "roundsBox";
-   board.appendChild(roundsBox);
-   let roundsButton = document.createElement("button");
-   roundsButton.innerHTML = "Start Game";
-   roundsButton.addEventListener("click", setRounds);
-   board.appendChild(roundsButton);
-   
-
-}
-function buildConsole() { 
-board.innerHTML = "";
-
-
-
 }
 
 function setRounds() {
-  rounds = document.getElementById("roundsBox").value;
-  buildConsole();
+   return 5;
 }
 
 function rpsRound() {
