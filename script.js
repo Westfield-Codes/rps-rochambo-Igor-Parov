@@ -20,9 +20,31 @@ function main() {
 
 }
 function buildConsole() { 
-board.innerHTML = "";
-
-
+   board.innerHTML = "";
+   let playRock = document.createElement("div");
+   playRock = document.createElement("BUTTON");
+   playRock.id="rock";
+   playRock.innerHTML="rock";
+   playRock.className="move"
+   board.appendChild(playRock);
+   let playScissors = document.createElement("div");
+   playScissors = document.createElement("BUTTON");
+   playScissors.id="scissors";
+   playScissors.innerHTML="scissors";
+   playScissors.className="move"
+   board.appendChild(playScissors);
+   let playPaper = document.createElement("div");
+   playPaper = document.createElement("BUTTON");
+   playPaper.id="paper";
+   playPaper.innerHTML="paper";
+   playPaper.className="move"
+   board.appendChild(playPaper);
+   let lineBreak = document.createElement("br");
+   board.appendChild(lineBreak);
+   let roundNumber = document.createElement("p");
+   roundNumber.id="roundNumber";
+   roundNumber.innerHTML="Round of " + rounds;
+   board.appendChild(roundNumber);
 
 }
 
