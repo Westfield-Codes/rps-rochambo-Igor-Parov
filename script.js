@@ -1,7 +1,10 @@
 /* Global Variables */
 var score = [0, 0];
 var rounds = 5;
+var round = 1;
 var board = document.getElementById("gameBoard");
+var move = "rock";
+var scoreBoard = document.getElementById("scoreBoard");
 
 function main() {
    
@@ -25,52 +28,58 @@ function buildConsole() {
    playRock = document.createElement("BUTTON");
    playRock.id="rock";
    playRock.innerHTML="rock";
-   playRock.className="move"
+   playRock.className="move";
+   playRock.addEventListener("click",playingRock);
    board.appendChild(playRock);
    let playScissors = document.createElement("div");
    playScissors = document.createElement("BUTTON");
    playScissors.id="scissors";
    playScissors.innerHTML="scissors";
+   playScissors.addEventListener("click",playingScissors);
    playScissors.className="move"
    board.appendChild(playScissors);
    let playPaper = document.createElement("div");
    playPaper = document.createElement("BUTTON");
    playPaper.id="paper";
    playPaper.innerHTML="paper";
+   playPaper.addEventListener("click",playingPaper);
    playPaper.className="move"
    board.appendChild(playPaper);
    let lineBreak = document.createElement("br");
    board.appendChild(lineBreak);
    let roundNumber = document.createElement("p");
    roundNumber.id="roundNumber";
-   roundNumber.innerHTML="Round of " + rounds;
-   board.appendChild(roundNumber);
+   roundNumber.innerHTML="Round " + round + " of " + rounds;
+   scoreBoard.appendChild(roundNumber);
+   let player = document.createElement("div");
+   player.id = "player";
+   player.innerHTML = "Player";
 
+   scoreBoard.appendChild(player);
+   let computer = document.createElement("div");
+   computer.id = "computer";
+   computer.innerHTML = "Computer";
+
+   scoreBoard.appendChild(computer);
 }
 
 function setRounds() {
-  rounds = document.getElementById("roundsBox").value;
+  rounds = parseInt(document.getElementById("roundsBox").value);
   buildConsole();
-}
-
-function rpsRound() {
-
-   let u = "";
-   let c = "";
-   while (u == c) {
-      u = userTurn()
-      c = cpuTurn()
-      if (u == c) alert("We both chose " + c)
-      
-    }
-   
-   let combo = u + c;
-   let winner = findWinner(combo)
-   alert("You chose " + "(" + u + ")" + " and I chose " + "(" + c + ")" + " " + winner + " won!")
-   return winner;
   
 }
-
+function playingPaper(){
+   move = "paper";
+   cpuTurn();
+}
+function playingRock(){
+   move = "rock";
+   cpuTurn();
+}
+function playingScissors(){
+   move = "scissors";
+   cpuTurn();
+}
 function scoreBoard(winner) {
    if (winner == "I") score[1] += 1;
    else score[0] += 1;
@@ -114,11 +123,22 @@ function userTurn() {
  * @return: choice
  */
 function cpuTurn() {
+   board.innerHTML="";
+   let moveWords = ["rock", "paper", "scissors"];
    let moves = ["r", "p", "s"];
+   let u = moves[moveWords.indexOf(move)];
    let turn = Math.floor(Math.random() * 3);
    c = moves[turn];
-   return c;
-
+   while (u == c) {
+      alert("We both chose " + c)
+      buildConsole()
+      c = cpuTurn()
+    }
+let combo = u + c;
+   let winner = findWinner(combo)
+   let cmove = moveWords[turn]
+   alert("You chose " + "(" + move + ")" + " and I chose " + "(" + cmove + ")" + " " + winner + " won!");
+   round++;
 }
 
 /* findWinner
