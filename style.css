@@ -53,6 +53,17 @@ text-align: center;
         gap: 20px;
 }
 #player{
-
+position: relative;
+right:370px;
+top:600px;
+}
+#computer{
+position: relative;
+left:130px;
+top:600px;
+}
+#roundNumber{
+position: relative;
+left:100px;
 
 }

@@ -19,8 +19,6 @@ function main() {
    roundsButton.innerHTML = "Start Game";
    roundsButton.addEventListener("click", setRounds);
    board.appendChild(roundsButton);
-   
-
 }
 function buildConsole() { 
    board.innerHTML = "";
@@ -47,25 +45,26 @@ function buildConsole() {
    board.appendChild(playPaper);
    let lineBreak = document.createElement("br");
    board.appendChild(lineBreak);
-   let roundNumber = document.createElement("p");
+}
+function buildScoreBoard(){
+let roundNumber = document.createElement("p");
    roundNumber.id="roundNumber";
    roundNumber.innerHTML="Round " + round + " of " + rounds;
    scoreBoard.appendChild(roundNumber);
    let player = document.createElement("div");
    player.id = "player";
-   player.innerHTML = "Player";
-
+   player.innerHTML = "Player" + ": " + score[0];
    scoreBoard.appendChild(player);
    let computer = document.createElement("div");
    computer.id = "computer";
-   computer.innerHTML = "Computer";
-
+   computer.innerHTML = "Computer"+ ": " + score[1];
    scoreBoard.appendChild(computer);
-}
 
+}
 function setRounds() {
   rounds = parseInt(document.getElementById("roundsBox").value);
   buildConsole();
+  buildScoreBoard();
   
 }
 function playingPaper(){
@@ -92,19 +91,7 @@ function FinalWinner() {
    return finalWinner;
 }
 
-/* RPS Round
- * plays a round of RPS and tells the winner
- * @param: none
- * @return:none
- */
 
-
-/* userturn
- * user can choose r, p, or s.
- * if bad Input, give new choice
- * @param:none
- * @return:choice
- */
 function userTurn() {
    let choice = prompt("r, p, s?")
    let moves = ["r", "p", "s"];
@@ -114,40 +101,34 @@ function userTurn() {
    } else {
       return choice;
    }
-
+}
+function clearConsole(){
+   board.innerHTML="";
+   board.innerHTML="We both chose the same thing";
 }
 
-/* cpuTurn
- * computer choose between r, p, or s
- * @param:none
- * @return: choice
- */
 function cpuTurn() {
-   board.innerHTML="";
+   
+   
    let moveWords = ["rock", "paper", "scissors"];
    let moves = ["r", "p", "s"];
    let u = moves[moveWords.indexOf(move)];
    let turn = Math.floor(Math.random() * 3);
    c = moves[turn];
-   while (u == c) {
-      alert("We both chose " + c)
-      buildConsole()
-      c = cpuTurn()
+   if(u == c) {
+      console.log("CPUTurn")
+      clearConsole();
+      buildConsole();
     }
-let combo = u + c;
-   let winner = findWinner(combo)
-   let cmove = moveWords[turn]
-   alert("You chose " + "(" + move + ")" + " and I chose " + "(" + cmove + ")" + " " + winner + " won!");
-   round++;
+    else{
+      let combo = u + c;
+      let winner = findWinner(combo);
+      let cmove = moveWords[turn];
+      let RoundWinner = document.createElement("div");
+      RoundWinner.innerHTML= "You chose " + "(" + move + ")" + " and I chose " + "(" + cmove + ")" + " " + winner + " won!";
+      round++;
 }
-
-/* findWinner
- * takes user and computer turn
- * decides who the winner is
- * returns winner
- * @param:u,c
- * @return: winner
- */
+}
 function findWinner(combo) {
    let match = "";
    let winner = "";
