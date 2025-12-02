@@ -19,6 +19,7 @@ function main() {
    board.appendChild(roundsBox);
    let roundsButton = document.createElement("button");
    roundsButton.innerHTML = "Start Game";
+   roundsButton.id = "button";
    roundsButton.addEventListener("click", setRounds);
    board.appendChild(roundsButton);
 }

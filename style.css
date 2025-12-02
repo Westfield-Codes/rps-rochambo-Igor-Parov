@@ -81,3 +81,10 @@ font-size: 40px;
   text-align: center;
   font-size: 60px;
 }
+#roundsBox{
+  text-align: center;
+  font-size: 28px;
+}
+#button:hover{
+background-color: rgb(182, 175, 175);
+}
