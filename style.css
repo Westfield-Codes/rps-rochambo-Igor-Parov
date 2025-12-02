@@ -80,6 +80,8 @@ font-size: 40px;
 #playButton{
   text-align: center;
   font-size: 60px;
+  color:white;
+  background-color:rgb(117, 110, 110) ;
 }
 #roundsBox{
   text-align: center;
@@ -87,4 +89,8 @@ font-size: 40px;
 }
 #button:hover{
 background-color: rgb(182, 175, 175);
+}
+body{
+  background-color: rgb(117, 110, 110);
+  color:white;
 }
