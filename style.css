@@ -64,6 +64,20 @@ top:600px;
 }
 #roundNumber{
 position: relative;
-left:100px;
+left:150px;
+font-size: 40px;
 
+}
+#popup{
+  font-size: 28px;
+  text-align: center;
+  border-bottom: 2px solid red;
+  
+}
+#popup:hover{
+  color:rgb(150, 12, 19);
+}
+#playButton{
+  text-align: center;
+  font-size: 60px;
 }

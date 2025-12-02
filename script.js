@@ -1,3 +1,5 @@
+
+
 /* Global Variables */
 var score = [0, 0];
 var rounds = 5;
@@ -8,7 +10,7 @@ var scoreBoard = document.getElementById("scoreBoard");
 
 function main() {
    
-   document.getElementById("playButton"). style.display = "none";
+   document.getElementById("playButton").style.display = "none";
    let instructions = document.createElement("p");
    instructions.innerHTML = "How many rounds would you like to play? (1-10)";
    board.appendChild(instructions);
@@ -59,6 +61,13 @@ let roundNumber = document.createElement("p");
    computer.id = "computer";
    computer.innerHTML = "Computer"+ ": " + score[1];
    scoreBoard.appendChild(computer);
+   let scores = score[0] + score[1];
+   if(scores>5){
+  while(document.body.firstChild) { // or parent.lastChild
+    parent.removeChild(parent.firstChild); // or parent.removeChild(parent.lastChild);
+  }
+
+   }
 
 }
 function setRounds() {
@@ -68,14 +77,17 @@ function setRounds() {
   
 }
 function playingPaper(){
+   closePopup("none");
    move = "paper";
    cpuTurn();
 }
 function playingRock(){
+   closePopup("none");
    move = "rock";
    cpuTurn();
 }
 function playingScissors(){
+   closePopup("none");
    move = "scissors";
    cpuTurn();
 }
@@ -115,17 +127,34 @@ function cpuTurn() {
    let u = moves[moveWords.indexOf(move)];
    let turn = Math.floor(Math.random() * 3);
    c = moves[turn];
+   let user = "";
+   if(u=="p"){
+      user = "(paper)"
+   }
+   if(u=="r"){
+      user = "(rock)"
+   }
+   if(u=="s"){
+      user = "(scissors)"
+   }
+   if(c=="p"){
+      comp = "(paper)"
+   }
+   if(c=="r"){
+      comp = "(rock)"
+   }
+   if(c=="s"){
+      comp = "(scissors)"
+   }
    if(u == c) {
-      console.log("CPUTurn")
-      clearConsole();
-      buildConsole();
+      let message = "We both chose" + " " + user;
+      makePopUp(message, buildConsole)   
     }
     else{
       let combo = u + c;
       let winner = findWinner(combo);
       let cmove = moveWords[turn];
-      let RoundWinner = document.createElement("div");
-      RoundWinner.innerHTML= "You chose " + "(" + move + ")" + " and I chose " + "(" + cmove + ")" + " " + winner + " won!";
+      let message = "You chose " + user + " and I chose " + comp + " , so " + winner + " won!";      makePopUp(message, updateScore(winner));
       round++;
 }
 }
@@ -147,4 +176,27 @@ function findWinner(combo) {
       }
    }
    return winner;
+}
+function makePopUp(message,target){
+   let popup = document.createElement("div");
+   popup.id="popup";
+   popup.addEventListener('click', () => {
+      closePopup(target); 
+    });
+   let popP = document.createElement("p");
+   popP.innerHTML = message;
+   popup.appendChild(popP);
+   document.body.insertBefore(popup, board);
+}
+function closePopup(target){
+if(document.getElementById("popup")) document.getElementById("popup").remove();
+if(target !="none") target;
+
+
+}
+function updateScore(winner){
+if (winner == "I") score[1]++;
+   else score[0]++;
+   scoreBoard.innerHTML = "";
+   buildScoreBoard();
 }
