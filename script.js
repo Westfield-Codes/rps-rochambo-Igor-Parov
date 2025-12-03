@@ -2,7 +2,7 @@
 
 /* Global Variables */
 var score = [0, 0];
-var rounds = 5;
+var rounds;
 var round = 1;
 var board = document.getElementById("gameBoard");
 var move = "rock";
@@ -62,19 +62,13 @@ let roundNumber = document.createElement("p");
    computer.id = "computer";
    computer.innerHTML = "Computer"+ ": " + score[1];
    scoreBoard.appendChild(computer);
-   let scores = score[0] + score[1];
-   if(scores>5){
-  while(document.body.firstChild) { // or parent.lastChild
-    parent.removeChild(parent.firstChild); // or parent.removeChild(parent.lastChild);
-  }
-
-   }
-
+   stopGame(rounds);
 }
 function setRounds() {
   rounds = parseInt(document.getElementById("roundsBox").value);
   buildConsole();
   buildScoreBoard();
+  return rounds;
   
 }
 function playingPaper(){
@@ -98,28 +92,11 @@ function scoreBoard(winner) {
 }
 
 function FinalWinner() {
-   let finalWinner = "";
+  let finalWinner = "";
    if (score[0] > score[1]) finalWinner = "You";
    else finalWinner = "I";
    return finalWinner;
 }
-
-
-function userTurn() {
-   let choice = prompt("r, p, s?")
-   let moves = ["r", "p", "s"];
-   if (!moves.includes(choice)) {
-      alert("Invalid Input!")
-      return userTurn();
-   } else {
-      return choice;
-   }
-}
-function clearConsole(){
-   board.innerHTML="";
-   board.innerHTML="We both chose the same thing";
-}
-
 function cpuTurn() {
    
    
@@ -152,11 +129,11 @@ function cpuTurn() {
       makePopUp(message, buildConsole)   
     }
     else{
+      round++;
       let combo = u + c;
       let winner = findWinner(combo);
-      let cmove = moveWords[turn];
       let message = "You chose " + user + " and I chose " + comp + " , so " + winner + " won!";      makePopUp(message, updateScore(winner));
-      round++;
+      
 }
 }
 function findWinner(combo) {
@@ -200,4 +177,27 @@ if (winner == "I") score[1]++;
    else score[0]++;
    scoreBoard.innerHTML = "";
    buildScoreBoard();
+}
+function summarry(scores, finalWinner){
+   let winnerInfo = document.createElement("div");
+   winnerInfo.id = "winnerInfo";
+   let decision = document.createElement("p");
+   decision.id = "decision";
+   decision.innerHTML = "The Final Winner Of " + scores + " Round(s)  -----> " + finalWinner;
+   winnerInfo.appendChild(decision);
+   let playAgain = document.createElement("BUTTON");
+   playAgain.id = "playAgain";
+   playAgain.innerHTML = "Play Again"
+   playAgain.addEventListener("click",buildConsole());
+   winnerInfo.appendChild(playAgain);
+   document.body.appendChild(winnerInfo);
+}
+function stopGame(rounds){
+   let scores = score[0] + score[1];
+      if(scores>=rounds){
+      document.body.innerHTML = "";
+      let finalWinner=FinalWinner();
+      summarry(scores,finalWinner);
+      return scores;
+   }
 }
