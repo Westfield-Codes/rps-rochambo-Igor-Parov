@@ -7,7 +7,6 @@ var round = 1;
 var board = document.getElementById("gameBoard");
 var move = "rock";
 var scoreBoard = document.getElementById("scoreBoard");
-
 function main() {
    
    document.getElementById("playButton").style.display = "none";
@@ -188,7 +187,11 @@ function summarry(scores, finalWinner){
    let playAgain = document.createElement("BUTTON");
    playAgain.id = "playAgain";
    playAgain.innerHTML = "Play Again"
-   playAgain.addEventListener("click",buildConsole());
+   playAgain.addEventListener("click", function() {
+    window.location.reload();
+    return false;
+   });
+   
    winnerInfo.appendChild(playAgain);
    document.body.appendChild(winnerInfo);
 }
