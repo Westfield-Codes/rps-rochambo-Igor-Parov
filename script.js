@@ -185,12 +185,25 @@ function summarry(scores, finalWinner){
    decision.id = "decision";
    decision.innerHTML = "The Final Winner Of " + scores + " Round(s)  -----> " + finalWinner;
    winnerInfo.appendChild(decision);
+   const imageElement = document.createElement('img');
+   imageElement.id = "Image";
+   if(finalWinner=="You"){
+      imageElement.src = 'victory.png';
+      imageElement.alt = 'Winner Image';
+   }
+   else{
+      imageElement.src = 'lose.png';
+      imageElement.alt = 'Loser Image';
+   }
+   winnerInfo.appendChild(imageElement);
    let playAgain = document.createElement("BUTTON");
    playAgain.id = "playAgain";
    playAgain.innerHTML = "Play Again"
    playAgain.addEventListener("click", function() {
     window.location.reload();
+    
     return false;
+    
    });
    
    winnerInfo.appendChild(playAgain);

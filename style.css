@@ -94,13 +94,13 @@ background-color: rgb(182, 175, 175);
 }
 body{
   background-image: url("123.jpg");
-  background-size: cover;      /* растянуть на весь экран */
-  background-repeat: no-repeat; /* не повторять картинку */
-  background-position: center;  /* центрировать */
+  background-size: cover;      
+  background-repeat: no-repeat; 
+  background-position: center;  
   background-attachment: fixed; 
   color:white;
   text-align: center;
-  font-size:80px;
+  font-size:50px;
   font-weight: bold;
 }
 #winnerInfo1{
@@ -117,4 +117,14 @@ text-align: center;
 #playAgain{
   font-size:40px;
   background-color: rgb(61, 94, 49);
+  color: white;
+  position: relative;
+  bottom: 140px;
+  right:200px;
+}
+#Image{
+  width: 400px;
+  position: relative;
+  top:300px;
+  left:100px;
 }
