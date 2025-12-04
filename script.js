@@ -10,6 +10,7 @@ var scoreBoard = document.getElementById("scoreBoard");
 function main() {
    
    document.getElementById("playButton").style.display = "none";
+   document.getElementById("rules").style.display = "none";
    let instructions = document.createElement("p");
    instructions.innerHTML = "How many rounds would you like to play? (1-10)";
    board.appendChild(instructions);
